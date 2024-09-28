@@ -15,8 +15,15 @@ const Book = ({
   const { user } = useAuthContext();
   const { deleteBook } = useBookContext();
   // ฟังก์ชันในการลบหนังสือ
-  const handleDelete = () => {
-    deleteBook(id);
+  const handleDelete = async(id) => {
+   try {
+    const response = await deleteBook(id);
+    if(response.status === 200){
+      window.location.reload()
+    }
+   } catch (error) {
+    console.log(error);
+   }
     
   };
 
