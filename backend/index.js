@@ -8,13 +8,7 @@ const PORT = process.env.PORT || 5000;
 
 // CORS configuration
 const corsOptions = {
-    origin: [
-        "https://midterm65-diqhz4ccc-plashons-projects.vercel.app",
-        "http://localhost:3000"
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization"],
+    origin: process.env.corsConnect,
 };
 
 app.use(cors(corsOptions));
