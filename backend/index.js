@@ -1,45 +1,35 @@
 const express = require("express");
-const app = express();
-require("dotenv").config();
-const PORT = process.env.PORT || 5000;
 const cors = require("cors");
-const bookRouter = require("./routers/book.router");
-const db = require("./models");
-const role = require("./models/role.model");
-const authRouter = require("./routers/auth.router");
+require("dotenv").config();
 
-// กำหนดค่า CORS ให้อนุญาตหลาย origin
+const app = express();
+const PORT = process.env.PORT || 5000;
+
+// CORS configuration
 const corsOptions = {
-    origin: ["https://midterm65.vercel.app", "http://localhost:5000"],  // Allow both deployed frontend and localhost
+    origin: [
+        "https://midterm65-diqhz4ccc-plashons-projects.vercel.app",
+        "http://localhost:3000"
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,  // For cookies/auth tokens if needed
-    allowedHeaders: ["Content-Type", "Authorization"],  // Allow necessary headers
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-// Dev mode
-// db.sequelize.sync({ force: true }).then(() => {
-//   initRole();
-//   console.log("Drop & sync database!");
-// });
-
-// const initRole = () => {
-//   role.create({ id: 1, roleName: "user" });
-//   role.create({ id: 2, roleName: "admin" });
-// };
-
 app.use(cors(corsOptions));
-//app.use(cors({origin:'*'}))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// use router http://localhost:5000/api/v1/auth
+// Routes
 app.use("/api/v1/book", bookRouter);
 app.use("/api/v1/auth", authRouter);
 
+// Test endpoint
 app.get("/", (req, res) => {
   res.send("<h1>Hello Backend</h1>");
 });
 
+// Start the server
 app.listen(PORT, () => {
-  console.log("Listening to http://localhost:" + PORT);
+  console.log(`Listening to http://localhost:${PORT}`);
 });
