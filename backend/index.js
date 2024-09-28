@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 5000;
 const role = require("./models/role.model")
 
 const corsOptions = {
-    origin: "https://midterm65-1cef5z18h-plashons-projects.vercel.app",
+    origin: "https://midterm65.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
     optionSuccessStatus:200,
