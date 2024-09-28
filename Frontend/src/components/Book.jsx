@@ -1,7 +1,6 @@
-import React,{startTransition} from "react";
+import React, { startTransition } from "react";
 import { useAuthContext } from "../context/authContext";
 import { useBookContext } from "../context/BookContext";
-
 
 const Book = ({
   id,
@@ -15,20 +14,19 @@ const Book = ({
   const { user } = useAuthContext();
   const { deleteBook } = useBookContext();
   // ฟังก์ชันในการลบหนังสือ
-  const handleDelete = async(id) => {
-   try {
-    const response = await deleteBook(id);
-    if(response.status === 200){
-      window.location.reload()
+  const handleDelete = async (id) => {
+    try {
+      const response = await deleteBook(id);
+      if (response.status === 200) {
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
     }
-   } catch (error) {
-    console.log(error);
-   }
-    
   };
 
   return (
-    <div className="card card-side  shadow-xl w-1/3 m-2 "  id="card">
+    <div className="card card-side  shadow-xl w-1/3 m-2 " id="card">
       <figure>
         <img className="w-32 h-42 object-cover" src={image} alt={bookName} />
       </figure>
@@ -49,22 +47,22 @@ const Book = ({
             <a href={`detail/${id}`}>Watch</a>
           </button>
           {user &&
-          (user.roles.includes("ROLES_MODERATOR") ||
-            user.roles.includes("ROLES_ADMIN")) && (
-            <div className="card-actions justify-end">
-              {user.roles.includes("ROLES_ADMIN") && (
-                <button
-                  className="btn btn-error"
-                  onClick={() => handleDelete(id)}
-                >
-                  Delete
-                </button>
-              )}
-              <a className="btn btn-primary" href={`edit/${id}`}>
-                Edit
-              </a>
-            </div>
-          )}
+            (user.roles.includes("ROLES_MODERATOR") ||
+              user.roles.includes("ROLES_ADMIN")) && (
+              <div className="card-actions justify-end">
+                {user.roles.includes("ROLES_ADMIN") && (
+                  <button
+                    className="btn btn-error"
+                    onClick={() => handleDelete(id)}
+                  >
+                    Delete
+                  </button>
+                )}
+                <a className="btn btn-primary" href={`edit/${id}`}>
+                  Edit
+                </a>
+              </div>
+            )}
         </div>
       </div>
     </div>
