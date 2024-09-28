@@ -5,14 +5,25 @@ const bookRouter = require("./routers/book.router")
 const authRouter = require("./routers/auth.router")
 const app = express();
 const PORT = process.env.PORT || 5000;
+const role = require("./models/role.model")
 
-// CORS configuration
 const corsOptions = {
     origin: process.env.corsConnect,
 };
 
+// Dev mode
+// db.sequelize.sync({ force: true }).then(() => {
+//   initRole();
+//   console.log("Drop & sync database!");
+// });
+
+const initRole = () => {
+    role.create({ id: 1, roleName: "user" });
+    role.create({ id: 2, roleName: "admin" });
+  };
+
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); // Allow preflight requests for all routes
+// app.options("*", cors(corsOptions)); // Allow preflight requests for all routes
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
