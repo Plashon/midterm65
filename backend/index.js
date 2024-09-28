@@ -11,6 +11,7 @@ const corsOptions = {
     origin: process.env.corsConnect,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
+    optionSuccessStatus:200,
 };
 
 
