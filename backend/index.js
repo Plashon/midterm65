@@ -10,7 +10,7 @@ const authRouter = require("./routers/auth.router");
 
 // กำหนดค่า CORS ให้อนุญาตหลาย origin
 const corsOptions = {
-    origin: ["http://localhost:5173"],
+    origin: ["https://midterm65.vercel.app/"],
     // methods: ["GET", "POST", "PUT", "DELETE"],
     // credentials: true,  // ถ้าคุณมีการใช้ cookies หรือ authentication tokens
    // allowedHeaders: ["Content-Type", "x-access-token","Authorization"], // อนุญาตให้ส่งโทเค็น
