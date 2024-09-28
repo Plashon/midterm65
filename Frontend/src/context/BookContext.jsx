@@ -99,7 +99,7 @@ export const BookProvider = ({ children }) => {
               text: "The book was deleted successfully!",
               icon: "success",
             });
-            
+            window.location.reload()
           }
         } catch (error) {
           console.error("Error deleting book:", error);
