@@ -9,7 +9,10 @@ const role = require("./models/role.model")
 
 const corsOptions = {
     origin: process.env.corsConnect,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
 };
+
 
 // Dev mode
 // db.sequelize.sync({ force: true }).then(() => {
@@ -23,6 +26,7 @@ const initRole = () => {
   };
 
 app.use(cors(corsOptions));
+app.use(cors({ origin: '*' }));
 // app.options("*", cors(corsOptions)); // Allow preflight requests for all routes
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
