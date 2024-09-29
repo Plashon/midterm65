@@ -12,7 +12,7 @@ function Navbar() {
   const menus = {
     ROLES_ADMIN: [
       { name: "Home page", link: "/" },
-      { name: "Add restaurant", link: "/add" },
+      { name: "Add New book", link: "/add" },
     ],
     ROLES_USER: [{ name: "Home page", link: "/" }],
   };
